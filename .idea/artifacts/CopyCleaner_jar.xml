@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CopyCleaner:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CopyCleaner_jar</output-path>
+    <root id="archive" name="CopyCleaner.jar">
+      <element id="module-output" name="CopyCleaner" />
+    </root>
+  </artifact>
+</component>
