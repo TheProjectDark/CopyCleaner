@@ -10,8 +10,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.*;
+import java.io.FileWriter;
+import java.io.IOException;
 
-public class Main {
+public class CopyCleaner {
     public static String getClipboardText() { //method for getting the text from the clipboard
         try {
             Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -36,10 +38,22 @@ public class Main {
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sel, null);
     }
 
-    public static String fastGetAndSet() {  //method for fasClean button, which gets the clipboard, sanitizes and returns;
+    public static String fastGetAndSet() {  //method for fastClean button, which gets the clipboard, sanitizes and returns;
         String fC;
         fC = sanitize(getClipboardText());
         return fC;
+    }
+
+    public static void saveToTxt(JTextArea txtArea) {
+        JFileChooser chooser = new JFileChooser();
+
+        if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+            try (FileWriter writer = new FileWriter(chooser.getSelectedFile())) {
+                writer.write(txtArea.getText());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private static String sanitize(String s) { //sanitizing text from bad unicode
@@ -62,14 +76,17 @@ public class Main {
         JButton pasteBtn = new JButton("PASTE");
         JButton copyBtn = new JButton("COPY");
         JButton fastClean = new JButton("FASTCLEAN");
+        JButton save = new JButton("Save to txt");
         txtArea.setBounds(5, 30, 470, 580);
         pasteBtn.setBounds(5, 5, 50, 20);
         copyBtn.setBounds(60, 5, 50, 20);
         fastClean.setBounds(115, 5, 100, 20);
+        save.setBounds(220, 5, 100, 20);
         panel.add(txtArea);
         panel.add(pasteBtn);
         panel.add(copyBtn);
         panel.add(fastClean);
+        panel.add(save);
 
         txtArea.setLineWrap(true);
         txtArea.setWrapStyleWord(true);
@@ -79,9 +96,10 @@ public class Main {
         copyBtn.addActionListener(e -> setClipboardText(sanitize(txtArea.getText())));
         fastClean.addActionListener(e -> setClipboardText(sanitize(fastGetAndSet())));
         fastClean.addActionListener(e -> txtArea.setText(sanitize(fastGetAndSet())));
+        save.addActionListener(e -> saveToTxt(txtArea));
 
         frame.add(panel);
-        frame.show();
+        frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
