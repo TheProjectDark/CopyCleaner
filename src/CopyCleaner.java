@@ -78,10 +78,10 @@ public class CopyCleaner {
         JButton fastClean = new JButton("FASTCLEAN");
         JButton save = new JButton("Save to txt");
         txtArea.setBounds(5, 30, 470, 580);
-        pasteBtn.setBounds(5, 5, 50, 20);
-        copyBtn.setBounds(60, 5, 50, 20);
-        fastClean.setBounds(115, 5, 100, 20);
-        save.setBounds(220, 5, 100, 20);
+        pasteBtn.setBounds(5, 5, 80, 20);
+        copyBtn.setBounds(90, 5, 70, 20);
+        fastClean.setBounds(165, 5, 120, 20);
+        save.setBounds(290, 5, 100, 20);
         panel.add(txtArea);
         panel.add(pasteBtn);
         panel.add(copyBtn);
@@ -94,8 +94,11 @@ public class CopyCleaner {
         //binds for buttons
         pasteBtn.addActionListener(e -> txtArea.setText(sanitize(getClipboardText())));
         copyBtn.addActionListener(e -> setClipboardText(sanitize(txtArea.getText())));
-        fastClean.addActionListener(e -> setClipboardText(sanitize(fastGetAndSet())));
-        fastClean.addActionListener(e -> txtArea.setText(sanitize(fastGetAndSet())));
+        fastClean.addActionListener(e -> {
+            String sanitized = sanitize(fastGetAndSet());
+            setClipboardText(sanitized);
+            txtArea.setText(sanitized);
+        });
         save.addActionListener(e -> saveToTxt(txtArea));
 
         frame.add(panel);
