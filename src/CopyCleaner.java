@@ -77,11 +77,13 @@ public class CopyCleaner {
         JButton copyBtn = new JButton("COPY");
         JButton fastClean = new JButton("FASTCLEAN");
         JButton save = new JButton("Save to txt");
+        //sizing
         txtArea.setBounds(5, 30, 470, 580);
-        pasteBtn.setBounds(5, 5, 80, 20);
-        copyBtn.setBounds(90, 5, 70, 20);
-        fastClean.setBounds(165, 5, 120, 20);
-        save.setBounds(290, 5, 100, 20);
+        pasteBtn.setBounds(5, 5, 116, 20);
+        copyBtn.setBounds(121, 5, 116, 20);
+        fastClean.setBounds(237, 5, 116, 20);
+        save.setBounds(353, 5, 116, 20);
+        //adding to panel
         panel.add(txtArea);
         panel.add(pasteBtn);
         panel.add(copyBtn);
