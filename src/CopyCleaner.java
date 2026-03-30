@@ -76,7 +76,7 @@ public class CopyCleaner {
         JButton pasteBtn = new JButton("PASTE");
         JButton copyBtn = new JButton("COPY");
         JButton fastClean = new JButton("FASTCLEAN");
-        JButton save = new JButton("Save to txt");
+        JButton save = new JButton("SAVE");
         //sizing
         txtArea.setBounds(5, 30, 470, 580);
         pasteBtn.setBounds(5, 5, 116, 20);
