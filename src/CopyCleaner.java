@@ -68,6 +68,7 @@ public class CopyCleaner {
         //creating frame and panel
         JFrame frame = new JFrame();
         frame.setSize(480, 640);
+        frame.setResizable(false);
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
